@@ -1,0 +1,15 @@
+<design:component>
+    <design:attribute name="objectName" label="Opportunity" />
+    <design:attribute name="objectIcon" label="opportunity" />
+    <design:attribute name="panelTitle" label="Name" />
+    <design:attribute name="field01Name" label="Amount" />
+    <design:attribute name="field02Name" label="StageName" />
+    <design:attribute name="field03Name" label="ContactId" />
+    <design:attribute name="field04Name" label="AccountId" />
+    <design:attribute name="field05Name" label="ClosedDate" />
+    <design:attribute name="field06Name" label="Type" />
+    <design:attribute name="field07Name" label="LeadSource" />
+    <design:attribute name="field08Name" label="OwnerId" />
+    <design:attribute name="field09Name" label="ExpectedRevenue" />
+    <design:attribute name="field10Name" label="ClosedDate" />
+</design:component>
