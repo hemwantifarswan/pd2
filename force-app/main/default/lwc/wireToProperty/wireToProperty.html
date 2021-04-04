@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="apexWireMethodToProperty - Leap Year Finder" icon-name="custom:custom-14">
+        <div class="slds-p-around_medium">
+            
+            <lightning-input type="text" label="enter any year" class="yearInput" required></lightning-input>
+            <lightning-button label = "check" onclick={handleSubmit}></lightning-button>
+
+            <template if:true={response.data}>                
+                <p>Year {year}, is a leap year</p>                
+            </template>
+            <template if:false={response.data}>                
+                <p>Year {year}, is not a leap year</p>                
+            </template>
+            <template if:true={response.error}>
+                <c-error-panel errors={response.error}></c-error-panel>
+            </template> 
+
+        </div>
+    </lightning-card>
+    
+</template>

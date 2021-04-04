@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Partner Accounts LWC">
+        <lightning-button label="search" slot="actions"></lightning-button>
+        <template if:true={accList}>
+            <lightning-datatable key-field="id" data={accList} columns={columns} onrowselection={getSelectedName}>
+            </lightning-datatable>
+        </template>
+        <template if:true={error}>
+            {error}
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,19 @@
+<template>
+    <lightning-card
+        title="apexWireMethodToFunction - Ramlal Mango Store"
+        icon-name="custom:custom14">
+
+        <!-- Default/basic -->
+        <div class="slds-p-around_medium lgc-bg">
+            <img src={murl} alt={altText} class="image"/>            
+            <lightning-input label="How many kilograms you want to buy?" type="number" class="quantityInput" step="1"></lightning-input>
+            <lightning-button label="Checkout" onclick={handleSubmit}></lightning-button>
+
+            <div class="slds-m-vertical_medium">
+                <template if:true={payableAmount}>
+                    <p>Payable Amount: {payableAmount}</p> 
+                </template>               
+            </div>
+        </div>        
+    </lightning-card>
+</template>

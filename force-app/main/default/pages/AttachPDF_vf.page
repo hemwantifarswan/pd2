@@ -1,0 +1,11 @@
+<apex:page standardController="Account" renderAs="PDF">
+
+    Name: <apex:outputText value="{! Account.Name}"/><br /> 
+
+    Account Number <apex:outputText value="{!Account.AccountNumber}"/><br /> 
+
+    Created Date <apex:outputText value="{!Account.CreatedDate}"/><br /> 
+
+    LastModified Date <apex:outputText value="{! Account.lastmodifiedDate}"/><br /> 
+
+</apex:page>
