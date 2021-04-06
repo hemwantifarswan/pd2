@@ -34,17 +34,17 @@ public with sharing class ToDoController {
     }
 
     @AuraEnabled(cacheable = true)
-    public static List<ToDo> getAllTodos(String todoId){
+    public static List<ToDo> getAllTodos(){
         
-        List<SObject> tsks = Database.query('SELECT Id, Name, CreateDate, Done__c from ToDo__c WHERE CreatedDate = LAST_N_DAYS:7 ORDER BY CreatedDate DESC');
+        List<SObject> tsks = Database.query('SELECT Id, Name, CreatedDate, Done__c from ToDo__c WHERE CreatedDate = LAST_N_DAYS:7 ORDER BY CreatedDate DESC');
 
         return getToDos(tsks);
     }
 
     @AuraEnabled(cacheable = true)
-    public static List<ToDo> getCurrentTodos(String todoId){
+    public static List<ToDo> getCurrentTodos(){
         
-        List<SObject> tsks = Database.query('SELECT Id, Name, CreateDate, Done__c from ToDo__c WHERE CreatedDate = TODAY ORDER BY CreatedDate DESC');
+        List<SObject> tsks = Database.query('SELECT Id, Name, CreatedDate, Done__c from ToDo__c WHERE CreatedDate = TODAY ORDER BY CreatedDate DESC');
 
         return getToDos(tsks);
     }

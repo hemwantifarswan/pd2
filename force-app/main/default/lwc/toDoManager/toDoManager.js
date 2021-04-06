@@ -1,5 +1,6 @@
 import { LightningElement, track } from 'lwc';
 import addToDo from '@salesforce/apex/ToDoController.addTodo';
+import getCurrentTodos from '@salesforce/apex/ToDoController.getCurrentTodos'
 
 export default class ToDoManager extends LightningElement {
     time="8:15 PM";
@@ -9,7 +10,8 @@ export default class ToDoManager extends LightningElement {
 
     connectedCallback(){
         this.getTime();
-        this.populateTodos();
+        //this.populateTodos();
+        this.fetchTodos();
         setInterval(()=>{
             this.getTime();
         },1000);
@@ -46,15 +48,17 @@ export default class ToDoManager extends LightningElement {
         const inputBox = this.template.querySelector("lightning-input");
         
         const todo = {
-            todoId : this.todos.length,
             todoName : inputBox.value,
-            done : false,
-            todoDate : new Date()
+            done : false
         }
-        addToDo({payload: JSON.stringify(todo)}).then(response => {
-
-        }).catch(error => {});
-        this.todos.push(todo);
+        addToDo({payload: JSON.stringify(todo)})
+        .then(response => {
+            console.log("Item inserted successfully");
+            this.fetchTodos();
+        }).catch(error => {
+            console.error("Error in inserting todo item: "+error);
+        });
+        //this.todos.push(todo);
         inputBox.value = "";
     }
     get upcomingTasks(){
@@ -66,6 +70,19 @@ export default class ToDoManager extends LightningElement {
         return this.todos && this.todos.length 
                 ? this.todos.filter(todo => todo.done) 
                 : []
+    }
+
+    fetchTodos(){
+        getCurrentTodos()
+            .then(result => {
+                if(result){
+                    console.log('Retrieved todos from server ', result.length);
+                    this.todos = result;
+                }
+            })
+            .catch(error => {
+                console.error("Error in fetching todo items: "+JSON.stringify(error));                
+            });
     }
     populateTodos(){
         const todos = [
@@ -90,5 +107,13 @@ export default class ToDoManager extends LightningElement {
 
         ];
         this.todos = todos;
+    }
+
+    updateHandler(){
+        this.fetchTodos();
+    }
+
+    deleteHandler(){
+        this.fetchTodos();
     }
 }
